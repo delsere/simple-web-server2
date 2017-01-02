@@ -60,27 +60,27 @@ func register(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("email:", r.Form["email"])
 		fmt.Println("username:", r.Form["username"])
 		fmt.Println("password:", r.Form["password"])
-
-		nome := r.Form["name"]
-		cognome := r.Form["cognome"]
-
-		fmt.Fprintf(w, []byte(nome))
-
+		/*
+			nome := r.Form["name"]
+			cognome := r.Form["cognome"]
+		*/
 		/*
 			email := r.Form["username"]
 			password := r.Form["password"]
 		*/
-		lenght := len(nome)
 
-		if len(nome) == 0 {
-			fmt.Fprintf(w, "Nome non inserito "+string(lenght))
-		} else {
-			fmt.Fprintf(w, "Nome OK!"+string(lenght))
-		}
-		if len(cognome) == 0 {
-			fmt.Fprintf(w, "Cognome non inserito")
-		}
+		/*
+			lenght := len(nome)
 
+			if len(nome) == 0 {
+				fmt.Fprintf(w, "Nome non inserito "+string(lenght))
+			} else {
+				fmt.Fprintf(w, "Nome OK!"+string(lenght))
+			}
+			if len(cognome) == 0 {
+				fmt.Fprintf(w, "Cognome non inserito")
+			}
+		*/
 	}
 }
 
