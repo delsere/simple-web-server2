@@ -8,6 +8,14 @@ import (
 	"strings"
 )
 
+type loginInfo (
+	nome string
+	cognome string
+	email string
+	username string
+	password string
+)
+
 func sayhelloName(w http.ResponseWriter, r *http.Request) {
 	//Parse url parameters passed, then parse the response packet for the POST body (request body)
 	// attention: If you do not call ParseForm method, the following data can not be obtained form
@@ -51,7 +59,7 @@ func register(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("method:", r.Method) //get request method
 
 	if r.Method == "GET" {
-		t, err := template.ParseFiles("template\register.gtpl")
+		t, err := template.ParseFiles("template/register.gtpl")
 		if err != nil {
 			log.Fatal("Parsing register.gtpl failed: ", err)
 		}
@@ -61,11 +69,22 @@ func register(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
 
 		// logic part of log in
-		fmt.Println("nome:", r.Form["name"])
-		fmt.Println("cognome:", r.Form["cognome"])
-		fmt.Println("email:", r.Form["email"])
-		fmt.Println("username:", r.Form["username"])
-		fmt.Println("password:", r.Form["password"])
+
+		var _nome, _cognome, _email, _username, _password []string
+
+		_nome = r.Form["name"]
+		_cognome = r.Form["cognome"]
+		_email = r.Form["email"]
+		_username = r.Form["username"]
+		_password = r.Form["password"]
+
+
+		fmt.Println("nome:", _nome)
+		fmt.Println("cognome:", _cognome)
+		fmt.Println("email:", _email)
+		fmt.Println("username:", _username)
+		fmt.Println("password:", _password)
+
 		/*
 				nome := r.Form["name"]
 				cognome := r.Form["cognome"]
