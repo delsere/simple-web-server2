@@ -60,39 +60,47 @@ func register(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("email:", r.Form["email"])
 		fmt.Println("username:", r.Form["username"])
 		fmt.Println("password:", r.Form["password"])
-
-		nome := r.Form["name"]
-		cognome := r.Form["cognome"]
-
-		fmt.Fprintf(w, []byte(nome))
-
 		/*
-			email := r.Form["username"]
-			password := r.Form["password"]
+				nome := r.Form["name"]
+				cognome := r.Form["cognome"]
+
+				fmt.Fprintf(w, []byte(nome))
+
+
+					email := r.Form["username"]
+					password := r.Form["password"]
+
+			lenght := len(nome)
+
+			if len(nome) == 0 {
+				fmt.Fprintf(w, "Nome non inserito "+string(lenght))
+			} else {
+				fmt.Fprintf(w, "Nome OK!"+string(lenght))
+			}
+			if len(cognome) == 0 {
+				fmt.Fprintf(w, "Cognome non inserito")
+			}
 		*/
-		lenght := len(nome)
-
-		if len(nome) == 0 {
-			fmt.Fprintf(w, "Nome non inserito "+string(lenght))
-		} else {
-			fmt.Fprintf(w, "Nome OK!"+string(lenght))
-		}
-		if len(cognome) == 0 {
-			fmt.Fprintf(w, "Cognome non inserito")
-		}
-
 	}
 }
 
 func main() {
-	http.HandleFunc("/", sayhelloName) // setting router rule
+	//Imposto le HandleFunc
+	setupHandlerFunctions()
+	startWebServer()
+}
+
+func setupHandlerFunctions() {
+	http.HandleFunc("/", sayhelloName)
 	http.HandleFunc("/login", login)
 	http.HandleFunc("/register", register)
+}
 
-	err := http.ListenAndServe(":9090", nil) // setting listening port
+func startWebServer() {
+	// setting listening port
+	err := http.ListenAndServe(":9090", nil)
 
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
-
 }
