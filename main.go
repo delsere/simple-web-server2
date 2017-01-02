@@ -51,7 +51,7 @@ func register(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("method:", r.Method) //get request method
 
 	if r.Method == "GET" {
-		t, err := template.ParseFiles("register.gtpl")
+		t, err := template.ParseFiles("template\register.gtpl")
 		if err != nil {
 			log.Fatal("Parsing register.gtpl failed: ", err)
 		}
